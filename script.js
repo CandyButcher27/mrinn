@@ -80,3 +80,33 @@ papers.forEach(paper => {
   const p = new Paper();
   p.init(paper);
 });
+
+window.onload = function() {
+    const preloader = document.getElementById('preloader');
+    const audio = document.getElementById('backgroundMusic');
+    const playMusicButton = document.getElementById('playMusicButton');
+  
+    // Keep the preloader visible for 5 seconds
+    setTimeout(() => {
+      preloader.style.transition = 'opacity 0.5s ease'; // Optional fade-out effect
+      preloader.style.opacity = '0';
+  
+      // Remove the preloader from view after the fade-out
+      setTimeout(() => {
+        preloader.style.display = 'none';
+  
+        // Show the button to allow user interaction
+        playMusicButton.style.display = 'block';
+      }, 500); // Matches the fade-out duration
+    }, 3000); // Delay of 3 seconds (3000 milliseconds)
+  
+    // Play the music when the button is clicked
+    playMusicButton.addEventListener('click', () => {
+      audio.play().then(() => {
+        playMusicButton.style.display = 'none'; // Hide the button after starting the music
+      }).catch((error) => {
+        console.error('Error playing audio:', error);
+      });
+    });
+  };
+  
